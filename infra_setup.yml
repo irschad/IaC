@@ -12,22 +12,22 @@ Parameters:
         Default: 10.0.0.0/16
 
     PublicSubnet1CIDR:
-        Description: Please enter the IP range (CIDR notation) for the Subnet
+        Description: CIDR range for Public Subnet 1
         Type: String
         Default: 10.0.0.0/24
 
     PublicSubnet2CIDR:
-        Description: Please enter the IP range (CIDR notation) for the Subnet
+        Description: CIDR range for Public Subnet 2
         Type: String
         Default: 10.0.1.0/24
         
     PrivateSubnet1CIDR:
-        Description: Please enter the IP range (CIDR notation) for the Subnet
+        Description: CIDR range for Private Subnet 1
         Type: String
         Default: 10.0.2.0/24
 
     PrivateSubnet2CIDR:
-        Description: Please enter the IP range (CIDR notation) for the Subnet
+        Description: CIDR range for Private Subnet 2
         Type: String
         Default: 10.0.3.0/24
 
@@ -357,25 +357,25 @@ Resources:
 Outputs:
 
     VPC:
-        Description: A reference to the created VPC
+        Description: A reference to the VPC created
         Value: !Ref VPC
         Export:
           Name: !Sub ${EnvironmentName}-VPCID
 
     PublicSubnets:
-        Description: A list of the public subnets
+        Description: List of public subnets
         Value: !Join [ ",", [ !Ref PublicSubnet1, !Ref PublicSubnet2 ]]
         Export:
           Name: !Sub ${EnvironmentName}-PUB-NETS
 
     PrivateSubnets:
-        Description: A list of the private subnets
+        Description: List of private subnets
         Value: !Join [ ",", [ !Ref PrivateSubnet1, !Ref PrivateSubnet2 ]]
         Export:
           Name: !Sub ${EnvironmentName}-PRIV-NETS
 
     WebAppLoadBalancerDNSName:
-        Description: DNS name or Public URL of the Load Balancer
+        Description: Public URL of the Load Balancer
         Value: !Join [ "", [ 'http://', !GetAtt WebAppLB.DNSName ]]
         Export:
             Name: !Sub ${EnvironmentName}-LB-DNSName
